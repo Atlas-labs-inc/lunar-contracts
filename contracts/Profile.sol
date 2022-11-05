@@ -88,7 +88,7 @@ contract Profile {
     function getUsersPaginated(uint page, uint total) public view returns (User[] memory _users) {
         _users = new User[](total);
         uint offset = page*total;
-        for (uint i = offset; i < offset+total; i++) {
+        for (uint i = 0; i < total; i++) {
             _users[i] = users[total_users[offset+i]];
         }
     }
