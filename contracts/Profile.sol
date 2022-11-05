@@ -93,6 +93,13 @@ contract Profile {
         }
     }
 
+    function getAllUsers() public view returns (User[] memory _users) {
+        _users = new User[](current_user_count);
+        for (uint i = 0; i < current_user_count; i++) {
+            _users[i] = users[total_users[i]];
+        }
+    }
+
     modifier onlyAccountOperator(string memory username, address potential_user_address) {
         require(isAccountOperator(username, potential_user_address));
         _;

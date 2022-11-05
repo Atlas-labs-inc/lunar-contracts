@@ -10,6 +10,10 @@ contract ChannelManager {
     event MessageEvent(string channel_name, Message message);
     event ReactionEvent(string channel_name, uint message_id, uint reaction_id);
 
+    string public global_channel_name;
+    string public icon_link;
+    string public banner_link;
+
     uint constant TOTAL_REACTIONS = 14;
     // mapping of channel name to message id to map of reaction enum values, and their counts
     mapping(string => mapping(uint => mapping(uint => uint))) message_reactions;
@@ -40,6 +44,18 @@ contract ChannelManager {
          \/_/   \/_/   \/_/ /_/   \/_/     \/_/   \/_____/ 
     */
 
+    function updateName(string memory _name) public onlyModerator(msg.sender) {
+        global_channel_name = _name;
+    }
+
+    function updateIcon(string memory _icon) public onlyModerator(msg.sender) {
+        icon_link = _icon;
+    }
+
+    function updateBanner(string memory _banner) public onlyModerator(msg.sender) {
+        banner_link = _banner;
+    }
+
     function createChannel(string memory name) public onlyModerator(msg.sender) {
       // check if channel exists
       require(!channel_exists[name]);
@@ -50,6 +66,7 @@ contract ChannelManager {
 
     function newMessage(string memory channel_name, PartialMessage memory _message) public onlyLiveChannels(channel_name) {
         require(profile_manager.isAccountOperator(_message.username, msg.sender));
+        // require(keccak256(bytes(_message.message)) != keccak256(bytes("")));
         Message memory message = Message(
             message_ids[channel_name],
             block.timestamp,
