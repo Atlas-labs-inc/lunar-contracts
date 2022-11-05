@@ -17,7 +17,7 @@ module.exports = {
     },
   },
   zkSyncDeploy: {
-    zkSyncNetwork: "http://ec2-54-88-79-111.compute-1.amazonaws.com:3050",
+    zkSyncNetwork: "http://ec2-18-210-15-152.compute-1.amazonaws.com:3050",
     ethNetwork: "https://sepolia.infura.io/v3/a0648f7545334ce49d4e66fd6dfed41b", // Can also be the RPC URL of the network (e.g. `https://goerli.infura.io/v3/<API_KEY>`)
     account: process.env.KEY
   },
