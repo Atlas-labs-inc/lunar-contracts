@@ -7,4 +7,5 @@ interface Permission {
     function isSystemContract(address potential_system_contract) external view returns (bool);
     function isDeployer(address potential_deployer) external view returns (bool);
     function updateModerator(address moderator, bool state) external;
+    function setOwner(address new_owner) external;
 }

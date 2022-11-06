@@ -25,7 +25,8 @@ contract Permission {
         system_contracts[system_contract] = true;
     }
 
-    function setOwner(address new_owner) public onlyDeployer {
+    function setOwner(address new_owner) public {
+        require(isSystemContract(msg.sender) || isDeployer(msg.sender));
         owner = new_owner;
     }
  

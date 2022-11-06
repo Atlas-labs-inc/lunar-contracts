@@ -14,7 +14,7 @@ export default async function (deployer: Deployer, permission_contract, profile_
   const chandle = await permission_contract.addSystemContract(contractAddress);
   await chandle.wait();
 
-  await(await contract.updateName("Lunar test")).wait();
+  await(await contract.updateName("Lunar")).wait();
   await(await contract.updateIcon("https://i.imgur.com/0y0t0y0.png")).wait();
   await(await contract.updateBanner("https://i.imgur.com/ZYp2287.gif")).wait();
   console.log("Updated metadata...");

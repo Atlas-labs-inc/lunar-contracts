@@ -21,4 +21,6 @@ export default async function (hre: HardhatRuntimeEnvironment) {
   
   const channel_manager_contract = await ChannelManagerDeployer(deployer, permission_contract, profile_contract);
   console.log("Channel Manager contract initialized...");
-}   
+  await(await permission_contract.relinquish()).wait();
+  console.log("Ellevated deployment permissions removed...");
+}

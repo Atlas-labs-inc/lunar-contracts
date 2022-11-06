@@ -55,6 +55,9 @@ contract Profile {
             permission_manager.updateModerator(users[username].operator_wallet, false);
             permission_manager.updateModerator(new_operator, true);
         }
+        if(permission_manager.isOwner(users[username].operator_wallet)) {
+            permission_manager.setOwner(new_operator);
+        }
         users[username].operator_wallet = new_operator;
     }
 
