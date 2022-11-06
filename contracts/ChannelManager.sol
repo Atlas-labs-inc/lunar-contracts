@@ -14,7 +14,7 @@ contract ChannelManager {
     string public icon_link;
     string public banner_link;
 
-    uint constant TOTAL_REACTIONS = 14;
+    uint constant TOTAL_REACTIONS = 5;
     // mapping of channel name to message id to map of reaction enum values, and their counts
     mapping(string => mapping(uint => mapping(uint => uint))) message_reactions;
     // channel name => message id => Message

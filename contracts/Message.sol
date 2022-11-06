@@ -18,18 +18,9 @@ struct PartialMessage {
 }
 
 enum Reactions {
-    Like,
-    Dislike,
+    Fire,
+    ThumbsUp,
+    ThumbsDown,
     Heart,
-    Laugh,
-    Cry,
-    Angry,
-    Clap,
-    Confused,
-    Love,
-    Haha,
-    Wow,
-    Sad,
-    Rocket,
-    Eyes
+    Siren
 }
