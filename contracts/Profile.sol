@@ -8,7 +8,10 @@ import { Permission } from "./PermissionInterface.sol";
 contract Profile {
     // username => user
     mapping(string => User) users;
-    
+
+    // address => username
+    mapping(address => string) user_by_main_address;
+
     // index => username
     mapping(uint => string) total_users;
     uint public current_user_count = 0;
@@ -31,15 +34,20 @@ contract Profile {
         // Don't make an account if the username requested already exists
         require(!userExists(user.username));
         // An empty username is invalid
-        require(keccak256(bytes(user.username)) != keccak256(bytes("")));
-        User memory _user = User(user.username, user.pfp_link, 0, msg.sender, user.operator_wallet, false);
+        // require(keccak256(bytes(user.username)) != keccak256(bytes("")));
+        User memory _user = User(user.username, user.pfp_link, 0, msg.sender, user.operator_wallet, false, user.bio);
         users[user.username] = _user;
         total_users[current_user_count] = user.username;
+        user_by_main_address[msg.sender] = user.username;
         current_user_count += 1;
     }
 
     function updateProfilePicture(string memory username, string memory new_pfp_link) public onlyAccountOperator(username, msg.sender) {
         users[username].pfp_link = new_pfp_link;
+    }
+
+    function updateBio(string memory username, string memory bio) public onlyAccountOperator(username, msg.sender) {
+        users[username].bio = bio;
     }
 
     function updateOperatorAddress(string memory username, address new_operator) public onlyAccountOwner(username, msg.sender) {
@@ -83,6 +91,10 @@ contract Profile {
 
     function getUser(string memory username) public view returns (User memory) {
         return users[username];
+    }
+
+    function getUserFromMainAddress(address main_address) public view returns (User memory) {
+        return users[user_by_main_address[main_address]];
     }
 
     function getUsersPaginated(uint page, uint total) public view returns (User[] memory _users) {

@@ -66,7 +66,6 @@ contract ChannelManager {
 
     function newMessage(string memory channel_name, PartialMessage memory _message) public onlyLiveChannels(channel_name) {
         require(profile_manager.isAccountOperator(_message.username, msg.sender));
-        // require(keccak256(bytes(_message.message)) != keccak256(bytes("")));
         Message memory message = Message(
             message_ids[channel_name],
             block.timestamp,

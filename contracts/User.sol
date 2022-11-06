@@ -8,6 +8,7 @@ struct User {
     address main_wallet;
     address operator_wallet;
     bool is_moderator;
+    string bio;
 }
 
 // Used on sign up
@@ -15,4 +16,5 @@ struct PartialUser {
     string username;
     address operator_wallet;
     string pfp_link;
+    string bio;
 }
