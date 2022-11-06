@@ -34,39 +34,8 @@ export default async function (deployer: Deployer, permission_contract, profile_
   });
   await interaction.wait();
 
-  await (await contract.newMessage('eth-global', {
-    username: "samee",
-    message: "this choppa came with a compressor",
-    reply_id: 0,
-    media: "",
-  })).wait();
-  await (await contract.newMessage('eth-global', {
-    username: "tristan",
-    message: "if i was will smith i would've smacked em with the stick",
-    reply_id: 0,
-    media: "",
-  })).wait();
-  await (await contract.newMessage('eth-global', {
-    username: "alpine",
-    message: "alright true",
-    reply_id: 0,
-    media: "",
-  })).wait();
-  await (await contract.newMessage('eth-global', {
-    username: "samee",
-    message: "shot his ass twenty times",
-    reply_id: 0,
-    media: "",
-  })).wait();
-  await (await contract.newMessage('eth-global', {
-    username: "tristan",
-    message: "bro's cheesing fr",
-    reply_id: 0,
-    media: "",
-  })).wait();
-
   console.log("Messages sent...");
-  console.log("All messages:", await contract.getMessagesPaginated('eth-global', 0, 10));
+  console.log("All messages:", await contract.getMessagesPaginated('eth-global', 0, 1));
 
   await(await contract.reactToMessage("eth-global", 0, 2)).wait(); 
   console.log("Reacted to message...");

@@ -9,7 +9,7 @@ contract ChannelManager {
 
     event MessageEvent(string channel_name, Message message);
     event ReactionEvent(string channel_name, uint message_id, uint reaction_id);
-
+    event ChannelEvent(string channel_name);
     string public global_channel_name;
     string public icon_link;
     string public banner_link;
@@ -62,6 +62,7 @@ contract ChannelManager {
       channels[channel_id] = name;
       channel_exists[name] = true;
       channel_id += 1;
+      emit ChannelEvent(name);
     }
 
     function newMessage(string memory channel_name, PartialMessage memory _message) public onlyLiveChannels(channel_name) {
