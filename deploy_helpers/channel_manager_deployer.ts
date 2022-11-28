@@ -20,26 +20,26 @@ export default async function (deployer: Deployer, permission_contract, profile_
   console.log("Updated metadata...");
 
   // Set a new user and read using getter
-  const addUserHandle = await contract.createChannel("eth-global");
+  const addUserHandle = await contract.createChannel("lunar-chat");
   await addUserHandle.wait();
   const addUserHandle2 = await contract.createChannel("general");
   await addUserHandle2.wait();
   console.log("All channels:", await contract.getChannelNames());
 
-  const interaction = await contract.newMessage('eth-global', {
+  const interaction = await contract.newMessage('lunar-chat', {
     username: "alpine",
-    message: "crab sandwich ong",
+    message: "crab sandwich was scrumptious",
     reply_id: 0,
     media: "",
   });
   await interaction.wait();
 
   console.log("Messages sent...");
-  console.log("All messages:", await contract.getMessagesPaginated('eth-global', 0, 1));
+  console.log("All messages:", await contract.getMessagesPaginated('lunar-chat', 0, 1));
 
-  await(await contract.reactToMessage("eth-global", 0, 2)).wait(); 
+  await(await contract.reactToMessage("lunar-chat", 0, 2)).wait(); 
   console.log("Reacted to message...");
-  console.log(await contract.getReactionsForMessage('eth-global', 0))
-  console.log("Total message count:", await contract.getNumberMessages('eth-global'));
+  console.log(await contract.getReactionsForMessage('lunar-chat', 0))
+  console.log("Total message count:", await contract.getNumberMessages('lunar-chat'));
   return contract
 }

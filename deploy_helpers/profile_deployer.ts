@@ -15,7 +15,7 @@ export default async function (deployer: Deployer, permission_contract) {
   // Set a new user and read using getter
   const handle = await contract.newUser({
     username: 'alpine',
-    pfp_link: "",
+    pfp_link: "https://avatars.githubusercontent.com/u/33703995?v=4",
     operator_wallet: deployer.zkWallet.address,
     bio: "soon to be father"
   });
