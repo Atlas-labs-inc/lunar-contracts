@@ -1,9 +1,9 @@
 import { utils, Wallet } from "zksync-web3";
 import * as ethers from "ethers";
 import { HardhatRuntimeEnvironment } from "hardhat/types";
-import { Deployer } from "@matterlabs/hardhat-zksync-deploy";
+import { AtlasDeployer } from "../lib/atlas-deployer"
 
-export default async function (deployer: Deployer) {
+export default async function (deployer: AtlasDeployer) {
   const artifact = await deployer.loadArtifact("contracts/Permission.sol:Permission");
   const contract = await deployer.deploy(artifact);
   await contract.deployed();

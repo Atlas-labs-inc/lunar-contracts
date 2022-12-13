@@ -1,6 +1,6 @@
-import { Deployer } from "@matterlabs/hardhat-zksync-deploy";
+import { AtlasDeployer } from "../lib/atlas-deployer"
 
-export default async function (deployer: Deployer, permission_contract) {
+export default async function (deployer: AtlasDeployer, permission_contract) {
   const artifact = await deployer.loadArtifact("contracts/Profile.sol:Profile");
   const contract = await deployer.deploy(artifact, [permission_contract.address]);
 

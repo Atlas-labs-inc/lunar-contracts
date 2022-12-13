@@ -1,9 +1,9 @@
 import { utils, Wallet } from "zksync-web3";
 import * as ethers from "ethers";
 import { HardhatRuntimeEnvironment } from "hardhat/types";
-import { Deployer } from "@matterlabs/hardhat-zksync-deploy";
+import { AtlasDeployer } from "../lib/atlas-deployer"
 
-export default async function (deployer: Deployer, permission_contract, profile_contract) {
+export default async function (deployer: AtlasDeployer, permission_contract, profile_contract) {
   const artifact = await deployer.loadArtifact("contracts/ChannelManager.sol:ChannelManager");
   const contract = await deployer.deploy(artifact, [permission_contract.address, profile_contract.address]);
 

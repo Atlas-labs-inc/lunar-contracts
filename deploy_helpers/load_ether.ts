@@ -1,14 +1,14 @@
 import { utils, Wallet } from "zksync-web3";
 import * as ethers from "ethers";
 import { HardhatRuntimeEnvironment } from "hardhat/types";
-import { Deployer } from "@matterlabs/hardhat-zksync-deploy";
+import { AtlasDeployer } from "../lib/atlas-deployer"
 
 export default async function (hre: HardhatRuntimeEnvironment) {
   // @ts-ignore
   const wallet = new Wallet(hre.config.zkSyncDeploy.account);
 
   // Create deployer object and load the artifact of the contract we want to deploy.
-  const deployer = new Deployer(hre, wallet);
+  const deployer = new AtlasDeployer(hre, wallet);
   // Don't throw ether away
   const hasMinBalance = await (await deployer.zkWallet.getBalance()).gt(ethers.utils.parseEther("0.01"));
   if(!hasMinBalance){
